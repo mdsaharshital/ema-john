@@ -1,21 +1,19 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useCart from "../../Hooks/useCart";
-import useProducts from "../../Hooks/useProducts";
 import { removeFromDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import "./Order.css";
 
 const Order = () => {
-  const [products, setProducts] = useProducts();
-  const [cart, setCart] = useCart(products);
+  const [cart, setCart] = useCart();
   const handleRemove = (product) => {
-    const rest = cart.filter((pd) => pd.id !== product.id);
+    const rest = cart.filter((pd) => pd._id !== product._id);
     setCart(rest);
-    removeFromDb(product.id);
+    removeFromDb(product._id);
   };
   const navigate = useNavigate();
   return (
@@ -23,7 +21,7 @@ const Order = () => {
       <div className="review-container">
         {cart.map((product) => (
           <ReviewItem
-            key={product.id}
+            key={product._id}
             product={product}
             handleRemove={handleRemove}
           ></ReviewItem>

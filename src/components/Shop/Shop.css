@@ -8,6 +8,22 @@
   gap: 45px;
   margin: 30px;
 }
+.pagination button{
+  background-color: white;
+  margin: 6px;
+  padding: 5px 10px;
+  border: 1px solid orange;
+  cursor: pointer;
+  transition: 0.2s all ease-in;
+}
+.pagination button:hover{
+  background-color: orange;
+}
+.pagination .selected{
+  background-color: orange;
+  color: white;
+}
+
 .cart-order-summary {
   background-color: rgba(255, 153, 0, 0.3);
 }
@@ -19,4 +35,10 @@
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+}
+@media screen and(max-width: 1100px) {
+  .product-container{
+    grid-template-columns: repeat(2,1fr);
+  }
+  
 }
